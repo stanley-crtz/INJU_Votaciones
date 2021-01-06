@@ -22,7 +22,7 @@ export const ItemCandidatos = ({ data, get, update }) => {
     }
 
     const DeleteUser = async () => {
-        await useSaveCandidato('http://localhost:3900/deleteCandidato', 'DELETE', {}, { id: data._id });
+        await useSaveCandidato('https://inju-votaciones.herokuapp.com/deleteCandidato', 'DELETE', {}, { id: data._id });
         Swal.fire(
             '¡Candidato eliminado!',
             'Tu candidato a sido eliminado',

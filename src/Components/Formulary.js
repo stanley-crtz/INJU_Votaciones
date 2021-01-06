@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import No_Image from '../Images/No_Image.png'
 import { useUploadImage } from '../Hooks/useUploadImage';
 import { useSaveCandidato } from '../Hooks/useSaveCandidato';
+import Swal from 'sweetalert2';
 
 export const Formulary = ({ candidatos, update, erase }) => {
 
@@ -21,6 +22,13 @@ export const Formulary = ({ candidatos, update, erase }) => {
 
     const HandleSave = async (e) => {
         e.preventDefault();
+        Swal.fire({
+            title: 'Registrando Docente...',
+            allowOutsideClick: false,
+            onBeforeOpen: () => {
+                Swal.showLoading()
+            },
+        });
         const archive = document.querySelector("#archive")
         const file = archive.files[0];
 
@@ -41,10 +49,11 @@ export const Formulary = ({ candidatos, update, erase }) => {
             }
         }
         console.log(data);
-        const { data: result } = await useSaveCandidato('http://localhost:3900/saveCandidato', 'POST', data);
+        const { data: result } = await useSaveCandidato('https://inju-votaciones.herokuapp.com/saveCandidato', 'POST', data);
 
         candidatos((e) => [...e, data])
         limpiar()
+        Swal.close()
 
     }
 
@@ -56,6 +65,16 @@ export const Formulary = ({ candidatos, update, erase }) => {
 
     const HandleUpdate = async (e) => {
         e.preventDefault();
+
+        Swal.fire({
+            title: 'Registrando Docente...',
+            allowOutsideClick: false,
+            showConfirmButton: false,
+            onBeforeOpen: () => {
+                Swal.showLoading()
+            },
+        });
+
         const data = {
             info: {
                 Nombre: Name,
@@ -67,11 +86,12 @@ export const Formulary = ({ candidatos, update, erase }) => {
             id: update[0]._id
         }
 
-        const { data: result } = await useSaveCandidato('http://localhost:3900/updateCandidato', 'PUT', data);
+        const { data: result } = await useSaveCandidato('https://inju-votaciones.herokuapp.com/updateCandidato', 'PUT', data);
 
         update[1]();
         erase(null)
         limpiar()
+        Swal.close()
     }
 
     const handleChangeImage = (e) => {

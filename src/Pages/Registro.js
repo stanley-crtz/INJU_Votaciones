@@ -9,7 +9,7 @@ export const Registro = () => {
     const [update, setUpdate] = useState(null)
 
     const GetData = async () => {
-        const {data: {docs}} = await useSaveCandidato('http://localhost:3900/getCandidatos', 'GET', {});
+        const {data: {docs}} = await useSaveCandidato('https://inju-votaciones.herokuapp.com/getCandidatos', 'GET', {});
 
         setCandiatos(docs);
     }

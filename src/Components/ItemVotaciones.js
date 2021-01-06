@@ -11,7 +11,7 @@ export const ItemVotaciones = ({ data, socket }) => {
     const HandleClick = async () => {
 
         ref.current.play()
-        await useSaveCandidato('http://localhost:3900/sumCandidato', 'PUT', { id: data._id });
+        await useSaveCandidato('https://inju-votaciones.herokuapp.com/sumCandidato', 'PUT', { id: data._id });
 
         Swal.fire('Votacion Exitosa', 'Su voto a sido registrado', 'success')
 

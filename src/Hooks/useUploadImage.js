@@ -1,5 +1,5 @@
 export const useUploadImage = async (FormData) => {
-   const resp = await fetch('http://localhost:3900/saveImage', {
+   const resp = await fetch('https://inju-votaciones.herokuapp.com/saveImage', {
        method: 'POST',
        body:FormData
    })

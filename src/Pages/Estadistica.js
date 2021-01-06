@@ -25,7 +25,7 @@ export const Estadistica = () => {
     })
     
     const HanldeReset = async () => {
-        await useSaveCandidato('http://localhost:3900/resetCandidato', 'PUT', {});
+        await useSaveCandidato('https://inju-votaciones.herokuapp.com/resetCandidato', 'PUT', {});
         Swal.fire('Reinicio exitoso', '','success')
     }
 
